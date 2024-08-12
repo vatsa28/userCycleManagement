@@ -22,6 +22,7 @@ public class CycleController {
 
     @GetMapping("/api/v1/getCycleHistory")
     public ResponseEntity<List<CycleHistoryResponse>> getCycleHistory(@RequestBody CycleRequest cycleRequest){
+        System.out.println("xyz");
         List<CycleHistoryResponse> cycleHistory = cycleService.getCycleHistory(cycleRequest.getUserId(), cycleRequest.getMdn());
         return new ResponseEntity<>(cycleHistory, HttpStatus.OK);
     }

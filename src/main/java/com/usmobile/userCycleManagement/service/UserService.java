@@ -6,12 +6,16 @@ import com.usmobile.userCycleManagement.exception.UserNotFoundException;
 import com.usmobile.userCycleManagement.pojo.UserResponse;
 import com.usmobile.userCycleManagement.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
 public class UserService {
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
     UserRepository userRepository;
@@ -23,7 +27,8 @@ public class UserService {
             throw new UserAlreadyPresentException("User with email " + email + " already exists");
         }
 
-        User newUser = new User(firstName, lastName, email, password);
+        User newUser = new User(firstName, lastName, email, passwordEncoder.encode(password));
+//        User newUser = new User(firstName, lastName, email, password);
         User savedUser = userRepository.save(newUser);
         return new UserResponse(savedUser.getId(), savedUser.getFirstName(), savedUser.getLastName(), savedUser.getEmail());
     }
