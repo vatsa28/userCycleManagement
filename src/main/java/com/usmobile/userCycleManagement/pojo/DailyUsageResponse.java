@@ -3,6 +3,9 @@ package com.usmobile.userCycleManagement.pojo;
 import java.time.Instant;
 import java.time.LocalDateTime;
 
+/**
+ * Response POJO to represent the daily usage of a user.
+ */
 public class DailyUsageResponse {
 
     Instant date;

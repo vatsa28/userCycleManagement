@@ -3,6 +3,9 @@ package com.usmobile.userCycleManagement.pojo;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
+/**
+ * Request POJO to update user information
+ */
 public class UpdateUserRequest {
 
     @NotBlank(message = "UserId is mandatory")

@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import java.util.HashMap;
 import java.util.Map;
-
+/**
+ * This class is used to handle exceptions thrown by the application.
+ * It provides a way to handle exceptions globally.
+ */
 @ControllerAdvice
 public class BaseExceptionHandler {
 

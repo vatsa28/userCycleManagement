@@ -2,6 +2,9 @@ package com.usmobile.userCycleManagement.pojo;
 
 import jakarta.validation.constraints.NotBlank;
 
+/**
+ * Request POJO for all the cycle Requests
+ */
 public class CycleRequest {
 
     @NotBlank(message = "userId is mandatory")

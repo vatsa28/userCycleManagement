@@ -11,6 +11,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+/**
+ * Service class for all the user related operations
+ */
 @Service
 public class UserService {
 
@@ -20,6 +23,14 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
+    /**
+     *
+     * @param firstName
+     * @param lastName
+     * @param email
+     * @param password
+     * @return UserResponse
+     */
     public UserResponse createUser(String firstName, String lastName, String email, String password){
 
         Optional<User> optionalUser = userRepository.findByEmail(email);
@@ -28,11 +39,18 @@ public class UserService {
         }
 
         User newUser = new User(firstName, lastName, email, passwordEncoder.encode(password));
-//        User newUser = new User(firstName, lastName, email, password);
         User savedUser = userRepository.save(newUser);
         return new UserResponse(savedUser.getId(), savedUser.getFirstName(), savedUser.getLastName(), savedUser.getEmail());
     }
 
+    /**
+     *
+     * @param userId
+     * @param firstName
+     * @param lastName
+     * @param email
+     * @return UserResponse
+     */
     public UserResponse updateUser(String userId, String firstName, String lastName, String email){
         Optional<User> optionalUser = userRepository.findById(userId);
 

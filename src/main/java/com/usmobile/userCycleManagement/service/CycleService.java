@@ -14,6 +14,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Service for all the Cycle Related operations
+ */
 @Service
 public class CycleService {
 
@@ -27,6 +30,12 @@ public class CycleService {
         return cycleRepository.findAll();
     }
 
+    /**
+     * Get all the cycles for a user
+     * @param userId
+     * @param mdn
+     * @return List<Cycle>
+     */
     public List<Cycle> getCycles(String userId, String mdn){
 
         List<Cycle> cycles = cycleRepository.findByUserIdAndMdn(userId, mdn);
@@ -36,6 +45,12 @@ public class CycleService {
         return cycles;
     }
 
+    /**
+     * Get the daily usage for a user
+     * @param userId
+     * @param mdn
+     * @return List<DailyUsageResponse>
+     */
     public List<DailyUsageResponse> getDailyUsage(String userId, String mdn){
         List<Cycle> getCycles = getCycles(userId, mdn);
         Collections.sort(getCycles, (a, b)->a.getStartDate().compareTo(b.getStartDate()));
@@ -48,6 +63,12 @@ public class CycleService {
         return resp;
     }
 
+    /**
+     * Get the cycle history for a user
+     * @param userId
+     * @param mdn
+     * @return List<CycleHistoryResponse>
+     */
     public List<CycleHistoryResponse> getCycleHistory(String userId, String mdn){
         List<Cycle> getCycles = getCycles(userId, mdn);
         List<CycleHistoryResponse> resp = new ArrayList<>();

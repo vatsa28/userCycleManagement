@@ -2,6 +2,9 @@ package com.usmobile.userCycleManagement.pojo;
 
 import java.time.Instant;
 
+/**
+ * Response POJO to represent the cycle history.
+ */
 public class CycleHistoryResponse {
 
     private String cycleId;

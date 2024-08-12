@@ -14,19 +14,31 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ *
+ */
 @RestController
 public class CycleController {
 
     @Autowired
     CycleService cycleService;
 
+    /**
+     * API to get all the cycle history based on a userId and mdn
+     * @param cycleRequest
+     * @return ResponseEntity<List<CycleHistoryResponse>>
+     */
     @GetMapping("/api/v1/getCycleHistory")
     public ResponseEntity<List<CycleHistoryResponse>> getCycleHistory(@RequestBody CycleRequest cycleRequest){
-        System.out.println("xyz");
         List<CycleHistoryResponse> cycleHistory = cycleService.getCycleHistory(cycleRequest.getUserId(), cycleRequest.getMdn());
         return new ResponseEntity<>(cycleHistory, HttpStatus.OK);
     }
 
+    /**
+     * API to get daily usage for the current cycle based on a userId and mdn
+     * @param cycleRequest
+     * @return ResponseEntity<List<DailyUsageResponse>>
+     */
     @GetMapping("/api/v1/getDailyUsage")
     public ResponseEntity<List<DailyUsageResponse>> getDailyUsage(@RequestBody CycleRequest cycleRequest){
         List<DailyUsageResponse> dailyUsage = cycleService.getDailyUsage(cycleRequest.getUserId(), cycleRequest.getMdn());

@@ -10,12 +10,20 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * Rest Controller for User related APIs
+ */
 @RestController
 public class UserController {
 
     @Autowired
     UserService userService;
 
+    /**
+     * API to create a new user
+     * @param createUserRequest
+     * @return ResponseEntity<UserResponse>
+     */
     @PostMapping("/api/v1/createUser")
     public ResponseEntity<UserResponse> createUser(@Valid @RequestBody CreateUserRequest createUserRequest) {
         UserResponse currUser = userService.createUser(
@@ -27,6 +35,11 @@ public class UserController {
         return new ResponseEntity<>(currUser, HttpStatus.CREATED);
     }
 
+    /**
+     * API to update an existing user
+     * @param updateUserRequest
+     * @return ResponseEntity<UserResponse>
+     */
     @PutMapping("/api/v1/updateUser")
     public ResponseEntity<UserResponse> updateUser(@Valid @RequestBody UpdateUserRequest updateUserRequest) {
         UserResponse updUser = userService.updateUser(

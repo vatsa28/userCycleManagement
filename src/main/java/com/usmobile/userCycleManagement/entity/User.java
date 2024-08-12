@@ -3,6 +3,9 @@ package com.usmobile.userCycleManagement.entity;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+/**
+ * Entity class for User
+ */
 @Document(collection = "user")
 public class User {
     @Id

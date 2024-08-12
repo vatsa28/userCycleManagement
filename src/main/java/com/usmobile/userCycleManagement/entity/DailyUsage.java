@@ -7,6 +7,9 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.Date;
 
+/**
+ * Entity class for DailyUsage
+ */
 @Document(collection = "dailyUsage")
 public class DailyUsage {
     @Id

@@ -6,6 +6,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.time.Instant;
 import java.time.LocalDateTime;
 
+/**
+ * Entity class for Cycle
+ */
 @Document(collection = "cycle")
 public class Cycle {
 

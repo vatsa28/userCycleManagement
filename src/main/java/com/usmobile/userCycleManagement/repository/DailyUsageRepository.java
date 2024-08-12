@@ -8,6 +8,9 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * Repository for DailyUsage entity
+ */
 public interface DailyUsageRepository extends MongoRepository<DailyUsage, String> {
 
     @Query("{ 'userId': ?0, 'mdn': ?1, 'usageDate': { $gte: ?2, $lte: ?3 }}")
