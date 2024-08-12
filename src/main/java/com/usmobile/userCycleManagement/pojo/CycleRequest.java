@@ -1,9 +1,13 @@
 package com.usmobile.userCycleManagement.pojo;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class CycleRequest {
 
+    @NotBlank(message = "userId is mandatory")
     private String userId;
 
+    @NotBlank(message = "mdn is mandatory")
     private String mdn;
 
     public CycleRequest() {

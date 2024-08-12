@@ -2,6 +2,7 @@ package com.usmobile.userCycleManagement.service;
 
 import com.usmobile.userCycleManagement.entity.Cycle;
 import com.usmobile.userCycleManagement.entity.DailyUsage;
+import com.usmobile.userCycleManagement.exception.CyclesNotFoundException;
 import com.usmobile.userCycleManagement.pojo.CycleHistoryResponse;
 import com.usmobile.userCycleManagement.pojo.DailyUsageResponse;
 import com.usmobile.userCycleManagement.repository.CycleRepository;
@@ -27,7 +28,12 @@ public class CycleService {
     }
 
     public List<Cycle> getCycles(String userId, String mdn){
-        return cycleRepository.findByUserIdAndMdn(userId, mdn);
+
+        List<Cycle> cycles = cycleRepository.findByUserIdAndMdn(userId, mdn);
+        if(cycles.size() == 0){
+            throw new CyclesNotFoundException("No cycles are found for this user "+userId+" with this mdn "+mdn);
+        }
+        return cycles;
     }
 
     public List<DailyUsageResponse> getDailyUsage(String userId, String mdn){
