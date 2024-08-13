@@ -20,11 +20,15 @@ import java.util.List;
 @Service
 public class CycleService {
 
-    @Autowired
     private CycleRepository cycleRepository;
 
-    @Autowired
     private DailyUsageRepository dailyUsageRepository;
+
+    @Autowired
+    public CycleService(CycleRepository cycleRepository, DailyUsageRepository dailyUsageRepository) {
+        this.cycleRepository = cycleRepository;
+        this.dailyUsageRepository = dailyUsageRepository;
+    }
 
     public List<Cycle> getAllCycles(){
         return cycleRepository.findAll();

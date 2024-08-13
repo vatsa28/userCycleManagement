@@ -18,8 +18,12 @@ import java.util.List;
 @RestController
 public class CycleController {
 
-    @Autowired
     CycleService cycleService;
+
+    @Autowired
+    public CycleController(CycleService cycleService) {
+        this.cycleService = cycleService;
+    }
 
     /**
      * API to get all the cycle history based on a userId and mdn

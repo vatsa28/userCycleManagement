@@ -2,10 +2,18 @@ package com.usmobile.userCycleManagement.pojo;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * Request POJO to update user information
  */
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class UpdateUserRequest {
 
     @NotBlank(message = "UserId is mandatory")
@@ -17,56 +25,4 @@ public class UpdateUserRequest {
     @NotBlank(message = "Email is mandatory")
     @Email
     private String email;
-
-    public UpdateUserRequest() {
-    }
-
-    public UpdateUserRequest(String userId, String firstName, String lastName, String email) {
-        this.userId = userId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    @Override
-    public String toString() {
-        return "UpdateUserRequest{" +
-                "userId='" + userId + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                '}';
-    }
 }

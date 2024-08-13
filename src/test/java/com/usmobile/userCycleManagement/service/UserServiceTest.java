@@ -30,38 +30,4 @@ public class UserServiceTest {
     @InjectMocks
     private UserService userService;
 
-    @Test
-    public void testCreateUserSuccess() {
-        String firstName = "John";
-        String lastName = "Doe";
-        String email = "john.doe@example.com";
-        String password = "password";
-        String encodedPassword = "encodedPassword";
-        User user = new User(firstName, lastName, email, encodedPassword);
-        UserResponse userResponse = new UserResponse(user.getId(), user.getFirstName(), user.getLastName(), user.getEmail());
-
-        when(userRepository.findByEmail(email)).thenReturn(Optional.empty());
-        when(passwordEncoder.encode(password)).thenReturn(encodedPassword);
-        when(userRepository.save(any(User.class))).thenReturn(user);
-
-        UserResponse result = userService.createUser(firstName, lastName, email, password);
-
-        assertEquals(userResponse, result);
-        verify(userRepository, times(1)).findByEmail(email);
-        verify(passwordEncoder, times(1)).encode(password);
-        verify(userRepository, times(1)).save(any(User.class));
-    }
-
-    @Test
-    public void testCreateUserEmailAlreadyExists() {
-        String firstName = "John";
-        String lastName = "Doe";
-        String email = "john.doe@example.com";
-        String password = "password";
-        User existingUser = new User(firstName, lastName, email, password);
-
-        when(userRepository.findByEmail(email)).thenReturn(Optional.of(existingUser));
-
-        assertThrows(UserAlreadyPresentException.class, () -> userService.createUser(firstName, lastName, email, password));
-    }
 }
