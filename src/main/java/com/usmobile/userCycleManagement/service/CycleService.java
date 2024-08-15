@@ -44,7 +44,7 @@ public class CycleService {
 
         List<Cycle> cycles = cycleRepository.findByUserIdAndMdn(userId, mdn);
         if(cycles.size() == 0){
-            throw new CyclesNotFoundException("No cycles are found for this user "+userId+" with this mdn "+mdn);
+            throw new CyclesNotFoundException(String.format("No cycles are found for this user %s with this mdn %s", userId, mdn));
         }
         return cycles;
     }

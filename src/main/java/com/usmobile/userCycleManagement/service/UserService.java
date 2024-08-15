@@ -37,7 +37,7 @@ public class UserService {
 
         Optional<User> optionalUser = userRepository.findByEmail(createUserRequest.getEmail());
         if (optionalUser.isPresent()) {
-            throw new UserAlreadyPresentException("User with email " + createUserRequest.getEmail() + " already exists");
+            throw new UserAlreadyPresentException(String.format("User with email %s already exists", createUserRequest.getEmail()));
         }
 
         User newUser = new User(
@@ -58,12 +58,12 @@ public class UserService {
         Optional<User> optionalUser = userRepository.findById(updateUserRequest.getUserId());
 
         if (optionalUser.isEmpty()) {
-            throw new UserNotFoundException("User with userId " + updateUserRequest.getUserId() + " doesn't exist");
+            throw new UserNotFoundException(String.format("User with userId %s doesn't exist", updateUserRequest.getUserId()));
         }
 
         Optional<User> userWithEmail = userRepository.findByEmail(updateUserRequest.getEmail());
         if (userWithEmail.isPresent()) {
-            throw new UserAlreadyPresentException("User with email " + updateUserRequest.getEmail() + " already exists");
+            throw new UserAlreadyPresentException(String.format("User with email %s already exists", updateUserRequest.getEmail()));
         }
 
         User currUser = optionalUser.get();
