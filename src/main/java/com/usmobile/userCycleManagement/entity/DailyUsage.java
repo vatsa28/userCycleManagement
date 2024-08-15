@@ -1,5 +1,9 @@
 package com.usmobile.userCycleManagement.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -7,6 +11,13 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.Date;
 
+/**
+ * Entity class for DailyUsage
+ */
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Document(collection = "dailyUsage")
 public class DailyUsage {
     @Id
@@ -15,66 +26,4 @@ public class DailyUsage {
     private String userId;
     private Instant usageDate;
     private double usedInMb;
-
-    public DailyUsage() {
-    }
-
-    public DailyUsage(String id, String mdn, String userId, Instant usageDate, double usedInMb) {
-        this.id = id;
-        this.mdn = mdn;
-        this.userId = userId;
-        this.usageDate = usageDate;
-        this.usedInMb = usedInMb;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getMdn() {
-        return mdn;
-    }
-
-    public void setMdn(String mdn) {
-        this.mdn = mdn;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public Instant getUsageDate() {
-        return usageDate;
-    }
-
-    public void setUsageDate(Instant usageDate) {
-        this.usageDate = usageDate;
-    }
-
-    public double getUsedInMb() {
-        return usedInMb;
-    }
-
-    public void setUsedInMb(double usedInMb) {
-        this.usedInMb = usedInMb;
-    }
-
-    @Override
-    public String toString() {
-        return "DailyUsage{" +
-                "id='" + id + '\'' +
-                ", mdn='" + mdn + '\'' +
-                ", userId='" + userId + '\'' +
-                ", usageDate=" + usageDate +
-                ", usedInMb=" + usedInMb +
-                '}';
-    }
 }
