@@ -18,6 +18,9 @@ jobs:
           java-version: '18'
           distribution: 'adopt'
 
+      - name: Export variable
+        run: export DBNAME=usmobiledb;export MONGO_PASSWORD=passwd123;export MONGO_USERNAME=root
+
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
