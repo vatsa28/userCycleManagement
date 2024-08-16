@@ -23,20 +23,20 @@ public class DailyUsageRepoTest {
     @Test
     public void testFindByUserIdAndMdn() {
 
-        String userId = "user123";
+        String userId = "66baf15bd61db82db7069a78";
         String mdn = "1234567890";
         Instant startDate = Instant.parse("2021-01-01T00:00:00Z");
         Instant endDate = Instant.parse("2021-01-31T00:00:00Z");
 
         DailyUsage dailyUsage1 = new DailyUsage();
-        dailyUsage1.setId("1");
+        dailyUsage1.setId("66b99ae13b4bedf37204e6b1");
         dailyUsage1.setUserId(userId);
         dailyUsage1.setMdn(mdn);
         dailyUsage1.setUsageDate(Instant.parse("2021-01-02T00:00:00Z"));
         dailyUsage1.setUsedInMb(100.75);
 
         DailyUsage dailyUsage2 = new DailyUsage();
-        dailyUsage2.setId("2");
+        dailyUsage2.setId("66b99ae13b4bedf37204e6b2");
         dailyUsage2.setUserId(userId);
         dailyUsage2.setMdn(mdn);
         dailyUsage2.setUsageDate(Instant.parse("2021-01-05T00:00:00Z"));
@@ -75,20 +75,20 @@ public class DailyUsageRepoTest {
     @Test
     public void testFindByUserIdAndMdn_NoMdn() {
 
-        String userId = "user123";
+        String userId = "66baf15bd61db82db7069a78";
         String mdn = "1234567890";
         Instant startDate = Instant.parse("2021-01-01T00:00:00Z");
         Instant endDate = Instant.parse("2021-01-31T00:00:00Z");
 
         DailyUsage dailyUsage1 = new DailyUsage();
-        dailyUsage1.setId("1");
+        dailyUsage1.setId("66b99ae13b4bedf37204e6b1");
         dailyUsage1.setUserId(userId);
         dailyUsage1.setMdn("0987654321");
         dailyUsage1.setUsageDate(Instant.parse("2021-01-02T00:00:00Z"));
         dailyUsage1.setUsedInMb(100.75);
 
         DailyUsage dailyUsage2 = new DailyUsage();
-        dailyUsage2.setId("2");
+        dailyUsage2.setId("66b99ae13b4bedf37204e6b2");
         dailyUsage2.setUserId(userId);
         dailyUsage2.setMdn("0987654321");
         dailyUsage2.setUsageDate(Instant.parse("2021-01-05T00:00:00Z"));
@@ -105,20 +105,20 @@ public class DailyUsageRepoTest {
     @Test
     public void testFindByUserIdAndMdn_NoDateRange() {
 
-        String userId = "user123";
+        String userId = "66baf15bd61db82db7069a78";
         String mdn = "1234567890";
         Instant startDate = Instant.parse("2021-01-01T00:00:00Z");
         Instant endDate = Instant.parse("2021-01-31T00:00:00Z");
 
         DailyUsage dailyUsage1 = new DailyUsage();
-        dailyUsage1.setId("1");
+        dailyUsage1.setId("66b99ae13b4bedf37204e6b1");
         dailyUsage1.setUserId(userId);
         dailyUsage1.setMdn(mdn);
         dailyUsage1.setUsageDate(Instant.parse("2021-02-02T00:00:00Z"));
         dailyUsage1.setUsedInMb(100.75);
 
         DailyUsage dailyUsage2 = new DailyUsage();
-        dailyUsage2.setId("2");
+        dailyUsage2.setId("66b99ae13b4bedf37204e6b2");
         dailyUsage2.setUserId(userId);
         dailyUsage2.setMdn(mdn);
         dailyUsage2.setUsageDate(Instant.parse("2021-02-05T00:00:00Z"));
@@ -135,20 +135,20 @@ public class DailyUsageRepoTest {
     @Test
     public void testFindByUserIdAndMdn_NoUserId() {
 
-        String userId = "user123";
+        String userId = "66baf15bd61db82db7069a78";
         String mdn = "1234567890";
         Instant startDate = Instant.parse("2021-01-01T00:00:00Z");
         Instant endDate = Instant.parse("2021-01-31T00:00:00Z");
 
         DailyUsage dailyUsage1 = new DailyUsage();
-        dailyUsage1.setId("1");
+        dailyUsage1.setId("66b99ae13b4bedf37204e6b1");
         dailyUsage1.setUserId("nonExistentUser");
         dailyUsage1.setMdn(mdn);
         dailyUsage1.setUsageDate(Instant.parse("2021-01-02T00:00:00Z"));
         dailyUsage1.setUsedInMb(100.75);
 
         DailyUsage dailyUsage2 = new DailyUsage();
-        dailyUsage2.setId("2");
+        dailyUsage2.setId("66b99ae13b4bedf37204e6b2");
         dailyUsage2.setUserId("nonExistentUser");
         dailyUsage2.setMdn(mdn);
         dailyUsage2.setUsageDate(Instant.parse("2021-01-05T00:00:00Z"));
