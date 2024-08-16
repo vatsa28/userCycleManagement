@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.Instant;
+import java.util.Objects;
 
 /**
  * Response POJO to represent the cycle history.
@@ -21,4 +22,17 @@ public class CycleHistoryResponse {
     Instant startDate;
 
     Instant endDate;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CycleHistoryResponse that = (CycleHistoryResponse) o;
+        return Objects.equals(cycleId, that.cycleId) && Objects.equals(startDate, that.startDate) && Objects.equals(endDate, that.endDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(cycleId, startDate, endDate);
+    }
 }

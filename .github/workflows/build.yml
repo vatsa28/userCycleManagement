@@ -4,6 +4,11 @@ on:
   push:
     branches: [ main, dev ]
 
+env:
+  DBNAME: "usmobiledb"
+  MONGO_PASSWORD: "passwd123"
+  MONGO_USERNAME: "root"
+
 jobs:
   build:
 

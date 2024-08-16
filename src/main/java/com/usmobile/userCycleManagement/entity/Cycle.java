@@ -26,4 +26,11 @@ public class Cycle {
     private Instant startDate;
     private Instant endDate;
     private String userId;
+
+    public Cycle(String mdn, Instant startDate, Instant endDate, String userId) {
+        this.mdn = mdn;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.userId = userId;
+    }
 }

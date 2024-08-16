@@ -32,6 +32,7 @@ public class UserService {
      *
      * @param createUserRequest
      * @return UserResponse
+     * @throws UserAlreadyPresentException when user with email already exists
      */
     public UserResponse createUser(CreateUserRequest createUserRequest){
 
@@ -53,6 +54,8 @@ public class UserService {
      *
      * @param updateUserRequest
      * @return UserResponse
+     * @throws UserNotFoundException when user is not found to update
+     * @throws UserAlreadyPresentException when user with new email already exists
      */
     public UserResponse updateUser(UpdateUserRequest updateUserRequest){
         Optional<User> optionalUser = userRepository.findById(updateUserRequest.getUserId());
@@ -63,7 +66,7 @@ public class UserService {
 
         Optional<User> userWithEmail = userRepository.findByEmail(updateUserRequest.getEmail());
         if (userWithEmail.isPresent()) {
-            throw new UserAlreadyPresentException(String.format("User with email %s already exists", updateUserRequest.getEmail()));
+            throw new UserAlreadyPresentException(String.format("User with email %s already exists with new email", updateUserRequest.getEmail()));
         }
 
         User currUser = optionalUser.get();
