@@ -1,10 +1,12 @@
 package com.usmobile.userCycleManagement.repository;
 
+import com.usmobile.userCycleManagement.config.PasswordUtil;
 import com.usmobile.userCycleManagement.entity.User;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Optional;
@@ -25,6 +27,7 @@ public class UserRepoTest {
         user.setFirstName("John");
         user.setLastName("Doe");
         user.setEmail(email);
+        user.setPassword("password123");
         userRepository.save(user);
 
         Optional<User> foundUser = userRepository.findByEmail(email);
@@ -38,7 +41,6 @@ public class UserRepoTest {
         user.setFirstName("John");
         user.setLastName("Doe");
         user.setEmail("john.doe@gmail.com");
-        userRepository.save(user);
 
         Optional<User> foundUser = userRepository.findByEmail("simple.mail@gmail.com");
         assertThat(foundUser).isEmpty();
