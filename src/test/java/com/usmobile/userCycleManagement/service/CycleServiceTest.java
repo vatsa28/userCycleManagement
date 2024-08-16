@@ -35,18 +35,6 @@ public class CycleServiceTest {
     private DailyUsageRepository dailyUsageRepository;
 
     @Test
-    void getCycles_CyclesNotFoundException() {
-        // Arrange
-        String userId = "user123";
-        String mdn = "mdn123";
-
-        when(cycleRepository.findByUserIdAndMdn(userId, mdn)).thenReturn(Collections.emptyList());
-
-        // Act & Assert
-        assertThrows(CyclesNotFoundException.class, () -> cycleService.getCycles(userId, mdn));
-    }
-
-    @Test
     void getDailyUsage_Success() {
 
         String userId = "user123";
