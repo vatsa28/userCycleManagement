@@ -43,21 +43,16 @@ The project uses Gradle as a build tool. You can use the Gradle Wrapper included
    
 Before you can run the application on Docker, you need to build a Docker image of the application. Make sure you have Docker installed on your machine. Then, run the following command:
 
-    docker build -t userCycleManagement .
+    docker build -t usercyclemanagement .
 
 5. **Run the Docker Container**
 
+First, get the db details ready, i.e DBName, MONGO_USERNAME, MONGO_PASSWORD denoting the MongoDB database name, username, and password respectively for the MongoDB Cloud resource. 
 After the Docker image has been built, you can run it with the following command:
 
-    docker run -p 8080:8080 userCycleManagement
+    docker run -p 8080:8080 -e "DBNAME=<mongoDbName>" -e "MONGO_USERNAME=<mongoDbUsername>" -e "MONGO_PASSWORD=<mongoDbPassword>" usercyclemanagement
 
 This command runs the Docker image and maps the application's port (8080) to the same port on your machine.
-
-Please note that this application uses MongoDB as a database. You need to have a running MongoDB instance and provide the connection details to the application. 
-
-I added my mongodb URI in application.properties. If we want to update it, can be added as an environment variable while running the docker run command.
-
-    docker run -e "SPRING_DATA_MONGODB_URI=<spring Data URI> -p 8080:8080 userCycleManagement
 
 # Database Design
 
@@ -91,8 +86,8 @@ The detailed API documentation is available [here](./API_DOC.md).
 
 # Github Actions
 
-The project is integrated with Github Actions for Continuous Integration. 
-The CI pipeline runs the Gradle build and tests on every push to the repository and then create a docker image out of it and pushes to  docker repo. 
+The project is integrated with Github Actions for Continuous Integration.
+The CI pipeline runs the Gradle build and tests on every push to the repository. 
 The pipeline is defined in the `.github/workflows/ci.yml` file.
 
 # Conclusion

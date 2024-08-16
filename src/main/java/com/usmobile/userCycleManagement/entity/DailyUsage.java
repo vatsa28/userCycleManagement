@@ -26,4 +26,11 @@ public class DailyUsage {
     private String userId;
     private Instant usageDate;
     private double usedInMb;
+
+    public DailyUsage(String userId, String mdn, Instant usageDate, double usedInMb) {
+        this.userId = userId;
+        this.mdn = mdn;
+        this.usageDate = usageDate;
+        this.usedInMb = usedInMb;
+    }
 }

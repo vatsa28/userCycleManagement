@@ -60,11 +60,11 @@ public class CycleService {
         Collections.sort(getCycles, (a, b)->a.getStartDate().compareTo(b.getStartDate()));
         Cycle last = getCycles.get(getCycles.size()-1);
         List<DailyUsage> dailyUsage = dailyUsageRepository.findByUsageDateBetween(last.getUserId(), last.getMdn(), last.getStartDate(), last.getEndDate());
-        List<DailyUsageResponse> resp = new ArrayList<>();
+        List<DailyUsageResponse> dailyUsageResponses = new ArrayList<>();
         for (DailyUsage du : dailyUsage){
-            resp.add(new DailyUsageResponse(du.getUsageDate(), du.getUsedInMb()));
+            dailyUsageResponses.add(new DailyUsageResponse(du.getUsageDate(), du.getUsedInMb()));
         }
-        return resp;
+        return dailyUsageResponses;
     }
 
     /**
@@ -72,14 +72,15 @@ public class CycleService {
      * @param userId
      * @param mdn
      * @return List<CycleHistoryResponse>
+     * @throws CyclesNotFoundException when cycles are not present for the given userId and mdn
      */
     public List<CycleHistoryResponse> getCycleHistory(String userId, String mdn){
         List<Cycle> getCycles = getCycles(userId, mdn);
-        List<CycleHistoryResponse> resp = new ArrayList<>();
+        List<CycleHistoryResponse> cycleHistoryResponses = new ArrayList<>();
         for (Cycle cycle : getCycles){
-            resp.add(new CycleHistoryResponse(cycle.getId(), cycle.getStartDate(), cycle.getEndDate()));
+            cycleHistoryResponses.add(new CycleHistoryResponse(cycle.getId(), cycle.getStartDate(), cycle.getEndDate()));
         }
-        return resp;
+        return cycleHistoryResponses;
     }
 
 }
