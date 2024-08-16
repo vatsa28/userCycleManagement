@@ -112,4 +112,123 @@ public class UserControllerTest {
                 .andExpect(content().string(String.format("User with email %s already exists with new email", request.getEmail())));
     }
 
+    @Test
+    public void testCreateUserFirstNameBlank() throws Exception {
+
+        CreateUserRequest request = new CreateUserRequest("", "Doe", "john.doe@gmail.com", "password123");
+
+        // When & Then
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/createUser")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void testCreateUserLastNameBlank() throws Exception {
+
+        CreateUserRequest request = new CreateUserRequest("John", "", "john.doe@gmail.com", "password123");
+
+        // When & Then
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/createUser")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void testCreateUserEmailBlank() throws Exception {
+
+        CreateUserRequest request = new CreateUserRequest("John", "Doe", "", "password123");
+
+        // When & Then
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/createUser")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void testCreateUserPasswordLengthlessThanReqd() throws Exception {
+
+        CreateUserRequest request = new CreateUserRequest("John", "Doe", "john.doe@gmail.com", "pass");
+
+        // When & Then
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/createUser")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void testCreateUserInvalidEmail() throws Exception {
+
+        CreateUserRequest request = new CreateUserRequest("John", "Doe", "john.doegmail.com", "pass");
+
+        // When & Then
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/createUser")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void testUpdateUserUserIdBlank() throws Exception {
+
+        UpdateUserRequest request = new UpdateUserRequest("","John2", "Doe2", "john.doe2@gmail.com");
+
+
+        mockMvc.perform(MockMvcRequestBuilders.put("/api/v1/updateUser")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void testUpdateUserFirstNameBlank() throws Exception {
+
+        UpdateUserRequest request = new UpdateUserRequest("66b7e4843b43490f835cfaac","", "Doe2", "john.doe2@gmail.com");
+
+
+        mockMvc.perform(MockMvcRequestBuilders.put("/api/v1/updateUser")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void testUpdateUserLastNameBlank() throws Exception {
+
+        UpdateUserRequest request = new UpdateUserRequest("66b7e4843b43490f835cfaac","John2", "", "john.doe2@gmail.com");
+
+
+        mockMvc.perform(MockMvcRequestBuilders.put("/api/v1/updateUser")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void testUpdateUserEmailBlank() throws Exception {
+
+        UpdateUserRequest request = new UpdateUserRequest("66b7e4843b43490f835cfaac","John2", "Doe", "");
+
+
+        mockMvc.perform(MockMvcRequestBuilders.put("/api/v1/updateUser")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void testUpdateUserInvalidEmail() throws Exception {
+
+        UpdateUserRequest request = new UpdateUserRequest("66b7e4843b43490f835cfaac","John2", "Doe2", "john.doe2.gmail.com");
+
+
+        mockMvc.perform(MockMvcRequestBuilders.put("/api/v1/updateUser")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isBadRequest());
+    }
 }

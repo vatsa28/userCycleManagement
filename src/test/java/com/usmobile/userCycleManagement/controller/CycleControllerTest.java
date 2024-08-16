@@ -112,4 +112,52 @@ public class CycleControllerTest {
                 .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE));
     }
 
+    @Test
+    public void testGetCycleHistoryUserIdBlank() throws Exception {
+
+        String userId = "";
+        String mdn = "1234567890";
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/getCycleHistory")
+                        .param("userId", userId)
+                        .param("mdn", mdn))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void testGetCycleHistoryMdnBlank() throws Exception {
+
+        String userId = "64d1a0e6e7f4c56d4b8e9c45";
+        String mdn = "";
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/getCycleHistory")
+                        .param("userId", userId)
+                        .param("mdn", mdn))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void testGetDailyUsageUserIdBlank() throws Exception {
+
+        String userId = "";
+        String mdn = "1234567890";
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/getDailyUsage")
+                        .param("userId", userId)
+                        .param("mdn", mdn))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void testGetDailyUsageMdnBlank() throws Exception {
+
+        String userId = "64d1a0e6e7f4c56d4b8e9c45";
+        String mdn = "";
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/getDailyUsage")
+                        .param("userId", userId)
+                        .param("mdn", mdn))
+                .andExpect(status().isBadRequest());
+    }
+
 }
